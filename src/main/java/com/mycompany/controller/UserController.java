@@ -30,13 +30,17 @@ public class UserController {
     public String login(Model m, HttpSession session){
         m.addAttribute("command",new UserCommand());
         session.invalidate();
-        return "login";
+        return "redirect:dashboard";
     }
     @RequestMapping(value="/login")
     public String loginForm(Model m, HttpSession session){
+        if(session.getAttribute("UserName")!=null){
+        return "redirect:dashboard";
+        }
         m.addAttribute("command",new UserCommand());
         session.invalidate();
         return "login";
+        
     }
     @RequestMapping(value ="/loginProcess",method=RequestMethod.POST )
     public String loginProcess(@ModelAttribute("command") UserCommand uc, Model m, HttpSession session){
