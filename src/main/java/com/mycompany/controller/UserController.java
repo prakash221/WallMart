@@ -26,7 +26,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
     @Autowired
     UsersDAO ud;
-    
+    @RequestMapping(value="/")
+    public String login(Model m, HttpSession session){
+        m.addAttribute("command",new UserCommand());
+        session.invalidate();
+        return "login";
+    }
     @RequestMapping(value="/login")
     public String loginForm(Model m, HttpSession session){
         m.addAttribute("command",new UserCommand());
@@ -37,7 +42,8 @@ public class UserController {
     public String loginProcess(@ModelAttribute("command") UserCommand uc, Model m, HttpSession session){
         
         if(ud.login(uc.getUserName(), uc.getPassword())){
-            session.setAttribute("uName", uc.getUserName());
+            session.setAttribute("UserName", uc.getUserName());
+            m.addAttribute("UserName",session.getAttribute("UserName") );
             return "redirect:dashboard"; 
         }
         else{
@@ -49,10 +55,9 @@ public class UserController {
     
     @RequestMapping("/dashboard")
     public String dash(Model m, HttpSession session){
-        if(session.getAttribute("uName")!=null)
+        if(session.getAttribute("UserName")!=null)
         {
-        m.addAttribute("title", "Bank Application");
-        m.addAttribute("message", "Login Successfully");
+        
         return "dashboard";
         }
         else{
