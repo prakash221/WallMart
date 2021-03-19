@@ -1,0 +1,10 @@
+com\mycompany\controller\DBConnection.class
+com\mycompany\controller\UserController.class
+com\mycompany\DAO\UsersDAO.class
+com\mycompany\configurator\SpringRootConfig.class
+com\mycompany\DAO\DatabaseVeriable.class
+com\mycompany\configurator\DispatcherServletInitializer.class
+com\mycompany\command\UserCommand.class
+com\mycompany\domain\Users.class
+com\mycompany\configurator\SpringWebConfig.class
+com\mycompany\DAO\UsersImplementation.class
