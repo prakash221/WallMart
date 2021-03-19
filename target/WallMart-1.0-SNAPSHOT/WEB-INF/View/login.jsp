@@ -53,7 +53,9 @@
                       <div class="form-group"><form:button id="submit" class="btn btn-primary btn-user btn-block" name="submit">LogIn</form:button></div>
                       
                   </form:form>
-                  
+                  <div class="text-danger "id="formFooter">
+                    ${message}
+                </div>
                 </div>
               </div>
             </div>
