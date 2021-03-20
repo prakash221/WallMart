@@ -163,31 +163,13 @@
                                                 <td><% out.print(rs.getString(5)); %></td>
                                                 <td><% out.print(rs.getString(6)); %></td>
                                                 <td> <a class="btn btn-warning mr-2">Edit</a> <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> </td>
-                                                
+
                                             </tr>
 
                                         </tbody>
-                                        <form:form method="POST" action="customerDelete" ModelAttribute="DeleteCustomer">
-                                                    <form:input path="id" value="{<%out.print(rs.getString(1)); %>}"></form:input>
-                                                    <!-- Delete-->
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">Select "Delete" below if you are sure to delete this row.</div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <form:button  class="btn btn-primary">Delete</form:button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form:form>
+
+
+
 
                                         <%
                                             }
@@ -248,7 +230,23 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Delete" below if you are sure to delete this row.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary text-black-50">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Bootstrap core JavaScript-->
