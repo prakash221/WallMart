@@ -27,6 +27,7 @@ public class UsersImplementation implements UsersDAO{
         try {
             while (rs.next()) {
                 if (rs.getString(4).equalsIgnoreCase(userName) && rs.getString(5).equalsIgnoreCase(Password)) {
+                    
                     return true;
                 }
             }
@@ -43,6 +44,17 @@ public class UsersImplementation implements UsersDAO{
         return true;
     }
     public Users checkUser(String urn){
+        String sql = "select * from wallmart_db.user where UserName='"+urn+"';";
+        ResultSet rs = db.select(sql);
+        try{
+            while(rs.next()){
+                Users urs = new Users(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
+                return urs;
+            }
+            
+        }catch(SQLException ex){
+            return null;
+        }
         return null;
     }
         

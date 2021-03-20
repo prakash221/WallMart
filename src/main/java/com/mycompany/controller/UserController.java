@@ -10,6 +10,7 @@ package com.mycompany.controller;
 //import javax.enterprise.inject.Model;
 import com.mycompany.DAO.UsersDAO;
 import com.mycompany.command.UserCommand;
+import com.mycompany.domain.Users;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class UserController {
     @RequestMapping(value="/")
     public String login(Model m, HttpSession session){
         m.addAttribute("command",new UserCommand());
-        session.invalidate();
+        
         return "redirect:dashboard";
     }
     @RequestMapping(value="/login")
@@ -46,8 +47,13 @@ public class UserController {
     public String loginProcess(@ModelAttribute("command") UserCommand uc, Model m, HttpSession session){
         
         if(ud.login(uc.getUserName(), uc.getPassword())){
+            Users urs = ud.checkUser(uc.getUserName());
             session.setAttribute("UserName", uc.getUserName());
-            m.addAttribute("UserName",session.getAttribute("UserName") );
+            session.setAttribute("Admin", urs.getIsAdmin());
+            session.setAttribute("Name",urs.getFullName());
+//            m.addAttribute("UserName",session.getAttribute("UserName") );
+//            m.addAttribute("Name",session.getAttribute("Name"));
+//            m.addAttribute("Admin", session.getAttribute("Admin"));
             return "redirect:dashboard"; 
         }
         else{
@@ -75,4 +81,6 @@ public class UserController {
         session.invalidate();
         return "redirect:login";
     }
+    
+    
 }
