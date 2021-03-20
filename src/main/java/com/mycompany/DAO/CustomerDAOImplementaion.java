@@ -29,7 +29,7 @@ public class CustomerDAOImplementaion implements CustomerDAO {
 
     @Override
     public boolean DeleteCustomer(int urn) {
-        String sql = "delete from wallmart_db.customers where ID ='"+urn+"';";
+        String sql = "delete from wallmart_db.customers where CustomerID ='"+urn+"';";
         return db.iud(sql);
         
     }

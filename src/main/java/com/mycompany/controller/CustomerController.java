@@ -9,6 +9,7 @@ package com.mycompany.controller;
 import com.mycompany.DAO.CustomerDAO;
 import com.mycompany.domain.Customer;
 import java.sql.ResultSet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,13 +39,15 @@ public class CustomerController {
             }
         }
     @RequestMapping(value="/deleteCustomer", method = RequestMethod.GET)
-    public String DeleteCustomer(@ModelAttribute("DeleteCustomer") Customer cu, Model m, HttpSession session){
+    public String DeleteCustomer( HttpServletRequest req, Model m, HttpSession session){
+        int id =Integer.parseInt(req.getParameter("id"));
         if(session.getAttribute("UserName")!=null){
-            if(cudo.DeleteCustomer(cu.getId())){
+            
+            if(cudo.DeleteCustomer(id)){
                 session.setAttribute("message","Customer deleted successfully");
                 return"redirect:customer";
             }else{
-                session.setAttribute("message","Can't delete this customer");
+                session.setAttribute("message",id);
                 return"redirect:customer";
             }
             
