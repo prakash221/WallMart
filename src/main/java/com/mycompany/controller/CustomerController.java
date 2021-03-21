@@ -79,6 +79,7 @@ public class CustomerController {
             session.removeAttribute("message");
             if(cudo.addCustomer(cu.getName(), cu.getPhone(), cu.getEmail(), cu.getAddress(), cu.getPANNumber())){
                 session.setAttribute("message", "New customer Added successfully");
+                session.removeAttribute("Show");
                 return"redirect:customer";
                 
             }
