@@ -1,5 +1,7 @@
 DROP SCHEMA IF EXISTS `wallmart_db` ;
 CREATE SCHEMA IF NOT EXISTS `wallmart_db` ;
+
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`customers` (
   `CustomerID` INT NOT NULL AUTO_INCREMENT,
   `CustomerName` VARCHAR(50) NOT NULL,
@@ -10,7 +12,16 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`customers` (
   PRIMARY KEY (`CustomerID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `wallmart_db`.`productcategory` (
+  `CategoryID` INT NOT NULL AUTO_INCREMENT,
+  `CategoryName` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`CategoryID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`product` (
   `ProductID` INT NOT NULL AUTO_INCREMENT,
   `ProductName` VARCHAR(50) NOT NULL,
@@ -19,38 +30,13 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`product` (
   `IsDiscontinued` TINYINT UNSIGNED NULL DEFAULT NULL,
   `CategoryID` INT NOT NULL,
   PRIMARY KEY (`ProductID`),
-  INDEX `Product_categoryFK_idx` (`CategoryID` ASC) VISIBLE,
-  CONSTRAINT `Product_categoryFK`
-    FOREIGN KEY (`CategoryID`)
-    REFERENCES `wallmart_db`.`productcategory` (`CategoryID`))
+  CONSTRAINT `CategoryFKToProduct`
+  FOREIGN KEY (`CategoryID`)
+  REFERENCES `wallmart_db`.`productcategory` (`CategoryID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
-CREATE TABLE IF NOT EXISTS `wallmart_db`.`productcategory` (
-  `CategoryID` INT NOT NULL AUTO_INCREMENT,
-  `CategoryName` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`CategoryID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
-CREATE TABLE IF NOT EXISTS `wallmart_db`.`purchaseitems` (
-  `PurchaseItemID` INT NOT NULL AUTO_INCREMENT,
-  `PurchaseID` INT NOT NULL,
-  `ProductID` INT NOT NULL,
-  `UnitPrice` DECIMAL(12,2) NULL DEFAULT NULL,
-  `Quantity` DOUBLE NOT NULL,
-  PRIMARY KEY (`PurchaseItemID`),
-  INDEX `PurchaseFK_idx` (`PurchaseID` ASC) VISIBLE,
-  INDEX `ProductFK_idx` (`ProductID` ASC) VISIBLE,
-  CONSTRAINT `ProductFK`
-    FOREIGN KEY (`ProductID`)
-    REFERENCES `wallmart_db`.`product` (`ProductID`),
-  CONSTRAINT `PurchaseFK`
-    FOREIGN KEY (`PurchaseID`)
-    REFERENCES `wallmart_db`.`purchases` (`PurchaseID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`purchases` (
   `PurchaseID` INT NOT NULL AUTO_INCREMENT,
   `PurchaseDate` DATETIME(3) NOT NULL,
@@ -60,7 +46,26 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`purchases` (
   PRIMARY KEY (`PurchaseID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
+
+CREATE TABLE IF NOT EXISTS `wallmart_db`.`purchaseitems` (
+  `PurchaseItemID` INT NOT NULL AUTO_INCREMENT,
+  `PurchaseID` INT NOT NULL,
+  `ProductID` INT NOT NULL,
+  `UnitPrice` DECIMAL(12,2) NULL DEFAULT NULL,
+  `Quantity` DOUBLE NOT NULL,
+  PRIMARY KEY (`PurchaseItemID`),
+  CONSTRAINT `ProductFKToPurchaseItem`
+    FOREIGN KEY (`ProductID`)
+    REFERENCES `wallmart_db`.`product` (`ProductID`),
+  CONSTRAINT `PurchaseFKToPurchaseItem`
+    FOREIGN KEY (`PurchaseID`)
+    REFERENCES `wallmart_db`.`purchases` (`PurchaseID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`sales` (
   `SalesID` INT NOT NULL AUTO_INCREMENT,
   `SalesDate` DATETIME(3) NOT NULL,
@@ -69,13 +74,13 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`sales` (
   `TAXAmount` DECIMAL(12,2) NULL DEFAULT NULL,
   `InvoiceNumber` BIGINT NOT NULL,
   PRIMARY KEY (`SalesID`),
-  INDEX `CustomerFK_idx` (`CustomerID` ASC) VISIBLE,
-  CONSTRAINT `CustomerFK`
+  CONSTRAINT `CustomerFKToSales`
     FOREIGN KEY (`CustomerID`)
     REFERENCES `wallmart_db`.`customers` (`CustomerID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`salesitem` (
   `SalesItemID` INT NOT NULL AUTO_INCREMENT,
   `SalesID` INT NOT NULL,
@@ -83,17 +88,16 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`salesitem` (
   `UnitPrice` DECIMAL(12,2) NULL DEFAULT NULL,
   `Quantity` DOUBLE NOT NULL,
   PRIMARY KEY (`SalesItemID`),
-  INDEX `salseFK_idx` (`SalesID` ASC) VISIBLE,
-  INDEX `ProductFK_idx` (`ProductID` ASC) VISIBLE,
-  CONSTRAINT `nbdsnbf`
+  CONSTRAINT `ProductFkToSalesItem`
     FOREIGN KEY (`ProductID`)
     REFERENCES `wallmart_db`.`product` (`ProductID`),
-  CONSTRAINT `nkdsbfkj`
+  CONSTRAINT `SalesFkToSalesItem`
     FOREIGN KEY (`SalesID`)
     REFERENCES `wallmart_db`.`sales` (`SalesID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`supplier` (
   `SupplierID` INT NOT NULL AUTO_INCREMENT,
   `CompanyName` VARCHAR(100) NOT NULL,
@@ -105,7 +109,8 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`supplier` (
   PRIMARY KEY (`SupplierID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS `wallmart_db`.`user` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
   `FullName` VARCHAR(50) NOT NULL,
@@ -117,4 +122,4 @@ CREATE TABLE IF NOT EXISTS `wallmart_db`.`user` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
+COLLATE = utf8mb4_general_ci;
