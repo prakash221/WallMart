@@ -28,10 +28,12 @@ public class CustomerController {
     @Autowired
     CustomerDAO cudo;
     @RequestMapping(value ="/customer", method=RequestMethod.GET)
-        public String Customer(Model m, HttpSession session){
+        public String Customer( Model m, HttpSession session){
+            
             if (session.getAttribute("UserName")!=null){
                 ResultSet rs = cudo.ListAllCustomer();
                 m.addAttribute("table", rs);
+                m.addAttribute("CustomerNew",new Customer());
                 return "customer";
             }
             else{
@@ -56,6 +58,28 @@ public class CustomerController {
         {
             return "redirect: login";
         }
+    }
+    @RequestMapping(value="/addNewCustomer", method =RequestMethod.POST )
+    public String Addcustomer(@ModelAttribute("CustomerNew") Customer cu , HttpSession session){
+        if(session.getAttribute("UserName")!=null){
+            session.removeAttribute("message");
+            if(cudo.addCustomer(cu.getName(), cu.getPhone(), cu.getEmail(), cu.getAddress(), cu.getPANNumber())){
+                session.setAttribute("message", "New customer Added successfully");
+                return"redirect:customer";
+                
+            }
+            else{
+                session.setAttribute("message", "Some error ocured please try again");
+                return"redirect:customer";
+            }
+        }
+        else
+        {
+            session.setAttribute("message", "You need to login first MF.");
+            return "redirect: login";
+        }
+    
+    
     }
     
 }

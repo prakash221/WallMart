@@ -5,7 +5,7 @@
 --%>
 <%@page import="java.sql.ResultSet"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,10 +124,36 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-
+                        
 
                         <!-- Page Heading -->
+                      <a class="btn btn-primary text-white" type="button" data-toggle="collapse" data-target="#addNewCustomer">Add New Customer</a>
+                        
+                        <div class="collapse" id="addNewCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                                        <button class="close" type="button" data-toggle="collapse" data-target="#addNewCustomer" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form:form action="addNewCustomer" modelAttribute="CustomerNew" method="POST">
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Full Name" path="Name"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Phone number" path="Phone"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Email" path="Email"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Address" path="Address"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="PANNumber" path="PANNumber"/></div>
 
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-toggle="collapse" data-target="#addNewCustomer">Close</button>
+                                                <form:button class="btn btn-primary" type="submit">Save</form:button>
+                                            </div>
+                                        </form:form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -150,9 +176,7 @@
                                             </tr>
                                         </thead>
                                         <%
-
                                             ResultSet rs = (ResultSet) request.getAttribute("table");
-
                                             while (rs.next()) {
                                         %>
                                         <tbody>
@@ -163,31 +187,30 @@
                                                 <td><% out.print(rs.getString(5)); %></td>
                                                 <td><% out.print(rs.getString(6)); %></td>
                                                 <td> <a class="btn btn-warning mr-2">Edit</a> <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> </td>
-                                                
+
                                             </tr>
 
                                         </tbody>
                                         <!--delete-->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">Ã—</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Delete" below if you are sure to delete this row.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary text-black-50" href="${pageContext.request.contextPath}/deleteCustomer?id=<% out.print(rs.getInt(1)); %>">Delete</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">Select "Delete" below if you are sure to delete this row.</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                        <a class="btn btn-primary text-black-50" href="${pageContext.request.contextPath}/deleteCustomer?id=<% out.print(rs.getInt(1)); %>">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <%
                                             }
-
                                         %>
 
                                     </table>
@@ -233,7 +256,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">Ã—</span>
+                            <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -244,7 +267,8 @@
                 </div>
             </div>
         </div>
-        
+
+        <!--Add New-->
 
 
         <!-- Bootstrap core JavaScript-->
@@ -263,6 +287,8 @@
         <!-- Page level custom scripts -->
         <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
+
+
 
     </body>
 

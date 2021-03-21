@@ -12,7 +12,7 @@ package com.mycompany.domain;
 public class Customer {
     int id;
     String Name;
-    int Phone;
+    String Phone;
     String Email;
     String Address;
     String PANNumber;
@@ -28,7 +28,7 @@ public class Customer {
         this.Name = Name;
     }
 
-    public void setPhone(int Phone) {
+    public void setPhone(String Phone) {
         this.Phone = Phone;
     }
 
@@ -52,7 +52,7 @@ public class Customer {
         return Name;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  * @author dcdip
  */
 public interface CustomerDAO {
-    public boolean addCustomer();
+    public boolean addCustomer(String Name, String Phone, String Email, String Address, String PANNumber);
     public boolean UpdateCustomer();
     public boolean DeleteCustomer(int urn);
     public Customer checkcustomer(int urn);

@@ -18,10 +18,11 @@ import org.springframework.stereotype.Repository;
 public class CustomerDAOImplementaion implements CustomerDAO {
 
     @Override
-    public boolean addCustomer() {
-        return true;
-    }
-
+    public boolean addCustomer(String Name, String Phone, String Email, String Address, String PANNumber) {
+        String sql ="INSERT INTO `wallmart_db`.`customers` (`CustomerName`, `Phone`, `Email`, `Address`, `PANNumber`) VALUES ('"+Name+"', '"+Phone+"', '"+Email+"', '"+Address+"', '"+PANNumber+"');";
+        return db.iud(sql);
+    } 
+    
     @Override
     public boolean UpdateCustomer() {
         return true;
@@ -44,5 +45,7 @@ public class CustomerDAOImplementaion implements CustomerDAO {
         String sql = "select * from wallmart_db.customers;";
         return db.select(sql);
     }
+
+    
     
 }
