@@ -32,6 +32,7 @@ public class CustomerController {
             
             if (session.getAttribute("UserName")!=null){
                 ResultSet rs = cudo.ListAllCustomer();
+                
                 m.addAttribute("table", rs);
                 m.addAttribute("CustomerNew",new Customer());
                 return "customer";
@@ -47,6 +48,7 @@ public class CustomerController {
             
             if(cudo.DeleteCustomer(id)){
                 session.setAttribute("message","Customer deleted successfully");
+                session.setAttribute("Show", "");
                 return"redirect:customer";
             }else{
                 session.setAttribute("message",id);
@@ -84,17 +86,21 @@ public class CustomerController {
     }
     @RequestMapping(value="/editCustomer",method = RequestMethod.GET)
     public String EditCustomer( HttpServletRequest req, Model m, HttpSession session){
+        session.removeAttribute("action");
         int id =Integer.parseInt(req.getParameter("id"));
         if(session.getAttribute("UserName")!=null){
+                session.setAttribute("action", "editCustomerDetails");
             Customer cu =cudo.checkcustomer(id);
-            if(cu==null){
+            if(cu!=null){
+                session.setAttribute("action", "editCustomerDetails");
+                session.setAttribute("Show", "show");
                 session.setAttribute("id",cu.getId());
                 session.setAttribute("CName",cu.getName());
                 session.setAttribute("Phone",cu.getPhone());
                 session.setAttribute("Email",cu.getEmail());
                 session.setAttribute("Address",cu.getAddress());
-                session.setAttribute("Pannumber",cu.getPANNumber());
-                return"redirect:dashboard";
+                session.setAttribute("PANNumber",cu.getPANNumber());
+                return"redirect:customer";
             }else{
                 session.setAttribute("message",id);
                 return"redirect:customer";
@@ -106,5 +112,37 @@ public class CustomerController {
             return "redirect: login";
         }
     }
+    @RequestMapping(value="/editCustomerDetails", method =RequestMethod.POST )
+    public String EditCustomer(@ModelAttribute("CustomerNew") Customer cu , HttpSession session){
+        session.setAttribute("action", "addNewCustomers");
+        session.removeAttribute("Show");
+        int id =Integer.parseInt(session.getAttribute("id").toString());
+        if(session.getAttribute("UserName")!=null){
+            
+            if(cudo.UpdateCustomer( id,cu.getName(), cu.getPhone(), cu.getEmail(), cu.getAddress(), cu.getPANNumber())){
+                session.setAttribute("message", " customer edited successfully");
+                session.setAttribute("action", "addNewCustomers");
+                session.removeAttribute("Show");
+                session.removeAttribute("id");
+                session.removeAttribute("CName");
+                session.removeAttribute("Phone");
+                session.removeAttribute("Email");
+                session.removeAttribute("Address");
+                session.removeAttribute("PANNumber");
+                return"redirect:customer";
+                
+            }
+            else{
+                session.setAttribute("message", "Some error ocured please try again");
+                return"redirect:customer";
+            }
+        }
+        else
+        {
+            session.setAttribute("message", "You need to login first");
+            return "redirect: login";
+        }
     
+    
+    }
 }

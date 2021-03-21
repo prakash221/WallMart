@@ -14,9 +14,9 @@ import java.sql.ResultSet;
  */
 public interface CustomerDAO {
     public boolean addCustomer(String Name, String Phone, String Email, String Address, String PANNumber);
-    public boolean UpdateCustomer();
-    public boolean DeleteCustomer(int urn);
-    public Customer checkcustomer(int urn);
+    public boolean UpdateCustomer(int id, String Name, String Phone, String Email, String Address, String PANNumber);
+    public boolean DeleteCustomer(int id);
+    public Customer checkcustomer(int id);
     public ResultSet ListAllCustomer();
     
 }
