@@ -59,7 +59,8 @@ public class CustomerController {
             return "redirect: login";
         }
     }
-    @RequestMapping(value="/addNewCustomer", method =RequestMethod.POST )
+    
+    @RequestMapping(value="/addNewCustomers", method =RequestMethod.POST )
     public String Addcustomer(@ModelAttribute("CustomerNew") Customer cu , HttpSession session){
         if(session.getAttribute("UserName")!=null){
             session.removeAttribute("message");
@@ -75,11 +76,35 @@ public class CustomerController {
         }
         else
         {
-            session.setAttribute("message", "You need to login first MF.");
+            session.setAttribute("message", "You need to login first");
             return "redirect: login";
         }
     
     
+    }
+    @RequestMapping(value="/editCustomer",method = RequestMethod.GET)
+    public String EditCustomer( HttpServletRequest req, Model m, HttpSession session){
+        int id =Integer.parseInt(req.getParameter("id"));
+        if(session.getAttribute("UserName")!=null){
+            Customer cu =cudo.checkcustomer(id);
+            if(cu==null){
+                session.setAttribute("id",cu.getId());
+                session.setAttribute("CName",cu.getName());
+                session.setAttribute("Phone",cu.getPhone());
+                session.setAttribute("Email",cu.getEmail());
+                session.setAttribute("Address",cu.getAddress());
+                session.setAttribute("Pannumber",cu.getPANNumber());
+                return"redirect:dashboard";
+            }else{
+                session.setAttribute("message",id);
+                return"redirect:customer";
+            }
+            
+        }
+        else
+        {
+            return "redirect: login";
+        }
     }
     
 }

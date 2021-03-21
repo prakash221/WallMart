@@ -137,10 +137,10 @@
                                         <button class="close" type="button" data-toggle="collapse" data-target="#addNewCustomer" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form:form action="addNewCustomer" modelAttribute="CustomerNew" method="POST">
+                                        <form:form action="addNewCustomers" modelAttribute="CustomerNew" method="POST">
                                             <div class="form-group"><form:input class="form-control form-control-user" placeholder="Full Name" path="Name"/></div>
                                             <div class="form-group"><form:input class="form-control form-control-user" placeholder="Phone number" path="Phone"/></div>
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Email" path="Email"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Email" path="Email" /></div>
                                             <div class="form-group"><form:input class="form-control form-control-user" placeholder="Address" path="Address"/></div>
                                             <div class="form-group"><form:input class="form-control form-control-user" placeholder="PANNumber" path="PANNumber"/></div>
 
@@ -186,7 +186,8 @@
                                                 <td><% out.print(rs.getString(4)); %></td>
                                                 <td><% out.print(rs.getString(5)); %></td>
                                                 <td><% out.print(rs.getString(6)); %></td>
-                                                <td> <a class="btn btn-warning mr-2">Edit</a> <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> </td>
+                                                <td> <a class="btn btn-warning mr-2" type="button" href="#">Edit</a> 
+                                                    <a href="${pageContext.request.contextPath}/deleteCustomer?id=<% out.print(rs.getInt(1)); %>" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> </td>
 
                                             </tr>
 
