@@ -20,6 +20,15 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(int id, String Name, String Phone, String Email, String Address, String PANNumber) {
+        this.id = id;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Email = Email;
+        this.Address = Address;
+        this.PANNumber = PANNumber;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }

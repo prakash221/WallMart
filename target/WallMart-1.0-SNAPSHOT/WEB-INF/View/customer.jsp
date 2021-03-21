@@ -124,12 +124,12 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-
+                        
 
                         <!-- Page Heading -->
-                        <a class="btn btn-primary text-white" type="button" data-toggle="collapse" data-target="#addNewCustomer">Add New Customer</a>
-
-                        <div class="collapse" id="addNewCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <a href="${pageContext.request.contextPath}/addNewCustomers" class="btn btn-primary text-white" type="button" >Add New Customer</a>
+                        
+                        <div class="collapse ${Show}" id="addNewCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -137,20 +137,22 @@
                                         <button class="close" type="button" data-toggle="collapse" data-target="#addNewCustomer" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form:form action="addNewCustomers" modelAttribute="CustomerNew" method="POST">
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Full Name" path="Name"/></div>
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Phone number" path="Phone"/></div>
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Email" path="Email" /></div>
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Address" path="Address"/></div>
-                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="PANNumber" path="PANNumber"/></div>
+                                        <form:form action="${action}" modelAttribute="CustomerNew" method="POST">
+                                            
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Full Name" path="Name" value="${CName}"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Phone number" path="Phone" value="${Phone}" /></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Email" path="Email" value="${Email}" /></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="Address" path="Address" value="${Address}"/></div>
+                                            <div class="form-group"><form:input class="form-control form-control-user" placeholder="PANNumber" path="PANNumber" value="${PANNumber}"/></div>
 
                                             <div class="modal-footer">
-                                                <button class="btn btn-secondary" data-toggle="collapse" data-target="#addNewCustomer">Close</button>
+                                                
                                                 <form:button class="btn btn-primary" type="submit">Save</form:button>
-                                                </div>
+                                            
                                         </form:form>
-                                    </div>
-
+                                            <a herf="#" class="btn btn-secondary text-white data-toggle="collapse" data-target="#addNewCustomer">Close</a>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -176,23 +178,28 @@
                                             </tr>
                                         </thead>
                                         <tbody id="idset">
-                                            <%
-                                                ResultSet rs = (ResultSet) request.getAttribute("table");
-                                                while (rs.next()) {
-                                            %>
-                                            <tr>
+                                        <%
+                                            ResultSet rs = (ResultSet) request.getAttribute("table");
+                                            while (rs.next()) {
+                                        %>
+                                        <tr>
                                                 <td><% out.print(rs.getString(2)); %></td>
                                                 <td><% out.print(rs.getString(3)); %></td>
                                                 <td><% out.print(rs.getString(4)); %></td>
                                                 <td><% out.print(rs.getString(5)); %></td>
                                                 <td><% out.print(rs.getString(6)); %></td>
-                                                <td> <a class="btn btn-warning mr-2" type="button" href="#">Edit</a> 
-                                                    <a href="${pageContext.request.contextPath}/deleteCustomer?id=<% out.print(rs.getInt(1)); %>" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> </td>
+                                                <td> 
+                                                    <a class="btn btn-warning mr-2" href="${pageContext.request.contextPath}/editCustomer?id=<% out.print(rs.getInt(1)); %>">Edit</a> 
+                                                    <a href="${pageContext.request.contextPath}/deleteCustomer?id=<% out.print(rs.getInt(1)); %>" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete </a> 
+                                                </td>
 
                                             </tr>
-                                            <%
-                                                }
-                                            %>
+
+                                        
+                                        
+                                        <%
+                                            }
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -249,6 +256,7 @@
             </div>
         </div>
 
+        <!--Add New-->
 
         <!--delete Modal-->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
