@@ -25,7 +25,7 @@ public class DBConnection {
     private String classname = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localHost:3306/wallmart_db";
     private String dbuser = "root";
-    private String dbpass = "12345";
+    private String dbpass = "";
 
     public DBConnection() {
         try {
