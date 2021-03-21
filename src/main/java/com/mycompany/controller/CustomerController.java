@@ -45,7 +45,7 @@ public class CustomerController {
     public String DeleteCustomer( HttpServletRequest req, Model m, HttpSession session){
         int id =Integer.parseInt(req.getParameter("id"));
         if(session.getAttribute("UserName")!=null){
-            
+            session.setAttribute("action", "addNewCustomers");
             if(cudo.DeleteCustomer(id)){
                 session.setAttribute("message","Customer deleted successfully");
                 session.setAttribute("Show", "");
@@ -61,6 +61,18 @@ public class CustomerController {
             return "redirect: login";
         }
     }
+    @RequestMapping(value ="/addNewCus", method=RequestMethod.GET)
+        public String CustomerNew( Model m, HttpSession session){
+            session.setAttribute("Show", "show");
+            if (session.getAttribute("UserName")!=null){
+                m.addAttribute("CustomerNew",new Customer());
+                session.setAttribute("action","addNewCustomers" );
+                return "redirect: customer";
+            }
+            else{
+                return"redirect: login";
+            }
+        }
     
     @RequestMapping(value="/addNewCustomers", method =RequestMethod.POST )
     public String Addcustomer(@ModelAttribute("CustomerNew") Customer cu , HttpSession session){
@@ -68,6 +80,7 @@ public class CustomerController {
             session.removeAttribute("message");
             if(cudo.addCustomer(cu.getName(), cu.getPhone(), cu.getEmail(), cu.getAddress(), cu.getPANNumber())){
                 session.setAttribute("message", "New customer Added successfully");
+                session.removeAttribute("Show");
                 return"redirect:customer";
                 
             }
@@ -103,7 +116,7 @@ public class CustomerController {
                 return"redirect:customer";
             }else{
                 session.setAttribute("message",id);
-                return"redirect:customer";
+                return"zcustomer";
             }
             
         }

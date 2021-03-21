@@ -127,9 +127,9 @@
                         
 
                         <!-- Page Heading -->
-                      <a class="btn btn-primary text-white" type="button" data-toggle="collapse" data-target="#addNewCustomer">Add New Customer</a>
+                        <a class="btn btn-primary text-white" type="button" href="${pageContext.request.contextPath}//addNewCus" >Add New Customer</a>
                         
-                        <div class="collapse ${Show}" id="addNewCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="collapse ${Show}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">

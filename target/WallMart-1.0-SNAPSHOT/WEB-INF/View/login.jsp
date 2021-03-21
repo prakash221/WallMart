@@ -50,7 +50,7 @@
                       <div class="form-group"><form:input id="username" class="form-control form-control-user" placeholder="User Name" path="UserName"/></div>
                       <div class="form-group"><form:password id="password" class="form-control form-control-user" placeholder="Password" path="Password"/></div>
                       
-                      <div class="form-group"><form:button id="submit" class="btn btn-primary btn-user btn-block" name="submit">LogIn</form:button></div>
+                      <div class="form-group"><form:button id="toast" class="btn btn-primary btn-user btn-block" name="submit">LogIn</form:button></div>
                       
                   </form:form>
                   <div class="text-danger "id="formFooter">
@@ -65,9 +65,10 @@
       </div>
 
     </div>
-
   </div>
+<script>
 
+</script>
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
