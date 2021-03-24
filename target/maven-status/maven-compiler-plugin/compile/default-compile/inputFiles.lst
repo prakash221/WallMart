@@ -1,8 +1,11 @@
+D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\ProductCatogaryDAOImplementation.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\command\UserCommand.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\configurator\SpringWebConfig.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\DatabaseVeriable.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\CustomerDAO.java
+D:\JavaProject\WallMart\src\main\java\com\mycompany\domain\ProductCategory.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\domain\Users.java
+D:\JavaProject\WallMart\src\main\java\com\mycompany\controller\ProductCatController.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\CustomerDAOImplementaion.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\UsersDAO.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\UsersImplementation.java
@@ -10,5 +13,6 @@ D:\JavaProject\WallMart\src\main\java\com\mycompany\domain\Customer.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\controller\CustomerController.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\controller\DBConnection.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\controller\UserController.java
+D:\JavaProject\WallMart\src\main\java\com\mycompany\DAO\ProductCatogaryDAO.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\configurator\SpringRootConfig.java
 D:\JavaProject\WallMart\src\main\java\com\mycompany\configurator\DispatcherServletInitializer.java

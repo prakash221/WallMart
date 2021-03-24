@@ -1,3 +1,4 @@
+com\mycompany\DAO\ProductCatogaryDAO.class
 com\mycompany\configurator\SpringRootConfig.class
 com\mycompany\DAO\DatabaseVeriable.class
 com\mycompany\DAO\CustomerDAOImplementaion.class
@@ -7,8 +8,11 @@ com\mycompany\domain\Customer.class
 com\mycompany\controller\DBConnection.class
 com\mycompany\controller\UserController.class
 com\mycompany\DAO\UsersDAO.class
+com\mycompany\controller\ProductCatController.class
+com\mycompany\domain\ProductCategory.class
 com\mycompany\configurator\DispatcherServletInitializer.class
 com\mycompany\DAO\CustomerDAO.class
+com\mycompany\DAO\ProductCatogaryDAOImplementation.class
 com\mycompany\command\UserCommand.class
 com\mycompany\domain\Users.class
 com\mycompany\DAO\UsersImplementation.class
