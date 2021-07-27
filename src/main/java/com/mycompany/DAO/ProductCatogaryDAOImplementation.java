@@ -54,7 +54,7 @@ public class ProductCatogaryDAOImplementation implements ProductCatogaryDAO{
     }
 
     @Override
-    public ResultSet ListAllCustomer() {
+    public ResultSet ListAllProductCat() {
         String sql = "select * from `wallmart_db`.`productcategory`;";
         return db.select(sql);
     }

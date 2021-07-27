@@ -17,5 +17,5 @@ public interface ProductCatogaryDAO {
     public boolean UpdateProductCat(int id, String catName);
     public boolean DeleteProductCatr(int id);
     public ProductCategory checkProductCat(int id);
-    public ResultSet ListAllCustomer();
+    public ResultSet ListAllProductCat();
 }

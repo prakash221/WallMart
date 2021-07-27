@@ -57,6 +57,7 @@
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
+  
 
 </body>
 

@@ -29,7 +29,7 @@ public class ProductCatController {
     public String productCatMain(HttpSession session, Model m){
         
         if(session.getAttribute("UserName")!=null){
-            ResultSet rs = PCD.ListAllCustomer();
+            ResultSet rs = PCD.ListAllProductCat();
             m.addAttribute("ProductCatSave",new ProductCategory() );
             m.addAttribute("PCTable",rs);
             return "ProductCategory";

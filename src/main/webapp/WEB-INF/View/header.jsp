@@ -47,8 +47,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProduct">Add New Product</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProductCat">Add Product Category</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/Product">Product table</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProductCat">Product category table</a>
           </div>
         </div>
       </li>

@@ -49,8 +49,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProduct">Add New Product</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProductCat">Add Product Category</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/Product">Product table</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/AddProductCat">Product Category Table</a>
           </div>
         </div>
       </li>
@@ -151,7 +151,7 @@
                             </div>
                         </div>
                                             
-            <!-- DataTales Example -->
+            <!-- Data Tales -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Customer Table</h6>
