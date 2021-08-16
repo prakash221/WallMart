@@ -16,17 +16,29 @@ public class Users {
     String UserName;
     String Password;
     int IsAdmin;
+    int WareHouseID;
 
-    public Users(int id, String FullName, String Email, String UserName, String Password, int IsAdmin) {
+    public Users(int id, String FullName, String Email, String UserName, String Password, int IsAdmin, int WareHouseID) {
         this.id = id;
         this.FullName = FullName;
         this.Email = Email;
         this.UserName = UserName;
         this.Password = Password;
         this.IsAdmin = IsAdmin;
+        this.WareHouseID = WareHouseID;
     }
 
+    
+
     public Users() {
+    }
+
+    public void setWareHouseID(int WareHouseID) {
+        this.WareHouseID = WareHouseID;
+    }
+
+    public int getWareHouseID() {
+        return WareHouseID;
     }
 
     public void setId(int id) {

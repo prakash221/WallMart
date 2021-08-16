@@ -26,7 +26,7 @@ public class PurchasesDAOImplemenation implements PurchasesDAO{
 
     @Override
     public boolean UpdatePurchases(int id,Float totalAmount) {
-        String sql="update `wallmart_db`.`purchases` where PurchasesId ='"+id+"'set TotalAmount='"+totalAmount+"';";
+        String sql="update `wallmart_db`.`purchases` set TotalAmount='"+totalAmount+"' where PurchaseID ="+id+";";
         return db.iud(sql);
     }
 
@@ -57,3 +57,4 @@ public class PurchasesDAOImplemenation implements PurchasesDAO{
     }
     
 }
+     

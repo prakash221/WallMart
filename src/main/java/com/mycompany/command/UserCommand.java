@@ -10,13 +10,43 @@ package com.mycompany.command;
  * @author dcdip
  */
 public class UserCommand {
+    int id;
     String FullName;
     String Email;
     String UserName;
     String Password;
     int IsAdmin;
+    int WareHouseID;
+
+    public UserCommand(int id, String FullName, String Email, String UserName, String Password, int IsAdmin, int WareHouseID) {
+        this.id = id;
+        this.FullName = FullName;
+        this.Email = Email;
+        this.UserName = UserName;
+        this.Password = Password;
+        this.IsAdmin = IsAdmin;
+        this.WareHouseID = WareHouseID;
+    }
+
+    
 
     public UserCommand() {
+    }
+
+    public void setWareHouseID(int WareHouseID) {
+        this.WareHouseID = WareHouseID;
+    }
+
+    public int getWareHouseID() {
+        return WareHouseID;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFullName() {

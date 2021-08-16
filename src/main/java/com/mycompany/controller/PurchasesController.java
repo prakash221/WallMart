@@ -8,6 +8,7 @@ package com.mycompany.controller;
 import com.mycompany.DAO.ProductDAO;
 import com.mycompany.DAO.PurchasesDAO;
 import com.mycompany.DAO.PurchasesItemsDAO;
+import com.mycompany.DAO.StockDAO;
 import com.mycompany.DAO.SupplierDAO;
 import com.mycompany.domain.Product;
 import com.mycompany.domain.Purchases;
@@ -37,6 +38,8 @@ public class PurchasesController {
     SupplierDAO sup;
     @Autowired
     PurchasesItemsDAO puid;
+    @Autowired 
+    StockDAO std;
     
     @RequestMapping(value="Purchases", method = RequestMethod.GET)
     public String PurchasesView(HttpSession session,Model m){
@@ -87,7 +90,17 @@ public class PurchasesController {
             total=total+subtotal;
             pud.UpdatePurchases(pid, total);
             session.setAttribute("totalAmount", total);
-            return"redirect:PurchasesItem";
+            if(std.UpdateStock(pui.getProductID(), (int) session.getAttribute("warehouseID"),pui.getQuantity())){
+                return"redirect:PurchasesItem";
+            }
+            else
+            {
+                
+                std.addStock(pui.getProductID(), (int) session.getAttribute("warehouseID"),pui.getQuantity());
+                return"redirect:PurchasesItem";
+            }
+            
+            
         }
         else{
             pud.DeletePurchases(pid);

@@ -54,14 +54,14 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesales" aria-expanded="false" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="${pageContext.request.contextPath}/Salse" data-toggle="collapse" data-target="#collapsesales" aria-expanded="false" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Sales</span>
         </a>
         <div id="collapsesales" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="${pageContext.request.contextPath}/customer">Add New Customer</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/sales">Product sales</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/salse">Product sales</a>
           </div>
         </div>
       </li>

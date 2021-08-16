@@ -51,9 +51,7 @@ public class UserController {
             session.setAttribute("UserName", uc.getUserName());
             session.setAttribute("Admin", urs.getIsAdmin());
             session.setAttribute("Name",urs.getFullName());
-//            m.addAttribute("UserName",session.getAttribute("UserName") );
-//            m.addAttribute("Name",session.getAttribute("Name"));
-//            m.addAttribute("Admin", session.getAttribute("Admin"));
+            session.setAttribute("warehouseID", urs.getWareHouseID());
             return "redirect:dashboard"; 
         }
         else{

@@ -17,5 +17,6 @@ public interface ProductDAO {
     public boolean UpdateProduct(int id, String ProductName, Float PricePerUnit, int stock, int CatID);
     public boolean DeleteProduct(int id);
     public Product checkProduct(int id);
+    public boolean updateStock(int id, int stock);
     public ResultSet ListAllProduct();
 }
