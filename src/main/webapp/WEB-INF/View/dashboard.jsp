@@ -11,7 +11,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-         
+            <a href="${pageContext.request.contextPath}/Purchases">Transfer Stock</a>
 
         </div>
 <jsp:include page="footer.jsp"/>
